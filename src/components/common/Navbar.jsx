@@ -1,7 +1,13 @@
 import React from "react";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import MobileMenu from "./MobileMenu";
 
-const navItems = ["Home", "About", "Service", "Blog"];
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+];
 
 function Navbar() {
   return (
@@ -16,30 +22,24 @@ function Navbar() {
         <nav className="hidden items-center gap-10 md:flex">
           {navItems.map((item) => (
             <a
-              key={item}
-              href="/"
+              key={item.label}
+              href={item.href}
               className="group relative pb-1 text-[15px] font-medium text-white/90 transition-colors hover:text-white"
             >
-              {item}
+              {item.label}
               <span className="absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-[#f8bc00] transition-transform duration-300 group-hover:scale-x-100" />
             </a>
           ))}
-
-          <a
-            href="/"
-            className="group relative flex items-center gap-1 pb-1 text-[15px] font-medium text-white/90 transition-colors hover:text-white"
-          >
-            Pages <ChevronDown size={15} strokeWidth={2.3} />
-            <span className="absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-[#f8bc00] transition-transform duration-300 group-hover:scale-x-100" />
-          </a>
         </nav>
 
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 rounded-full bg-[#f8bc00] px-7 py-3 text-[15px] font-semibold text-[#111827] transition hover:brightness-95"
+        <a
+          href="/contact"
+          className="hidden items-center gap-2 rounded-full bg-[#f8bc00] px-7 py-3 text-[15px] font-semibold text-[#111827] transition hover:brightness-95 md:inline-flex"
         >
           Contact <ArrowRight size={16} strokeWidth={2.4} />
-        </button>
+        </a>
+
+        <MobileMenu navItems={navItems} />
       </div>
     </header>
   );
