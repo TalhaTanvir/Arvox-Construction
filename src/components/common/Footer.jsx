@@ -1,11 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   MapPin,
 } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import hero1 from "../../assets/images/hero/hero1.jpg";
 
-const navLinks = ["Home", "About Us", "Our Services", "Projects", "Blog", "Contact"];
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
+];
 
 const officeLocations = [
   {
@@ -19,10 +28,10 @@ const officeLocations = [
 ];
 
 const socialLinks = [
-  { id: "facebook", label: "f", href: "/" },
-  { id: "twitter", label: "x", href: "/" },
-  { id: "instagram", label: "ig", href: "/" },
-  { id: "linkedin", label: "in", href: "/" },
+  { id: "facebook", label: "Facebook", href: "https://www.facebook.com/", Icon: FaFacebookF },
+  { id: "twitter", label: "X", href: "https://x.com/", Icon: FaXTwitter },
+  { id: "instagram", label: "Instagram", href: "https://www.instagram.com/", Icon: FaInstagram },
+  { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/", Icon: FaLinkedinIn },
 ];
 
 function Footer() {
@@ -36,18 +45,18 @@ function Footer() {
           <div className="absolute inset-0 bg-[#0f1720]/55" />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-            <h2 className="text-2xl font-semibold leading-tight sm:text-4xl">
+            <h2 className="text-xl font-semibold leading-tight sm:text-3xl">
               Begin Your Dream Project Today!
             </h2>
-            <button
-              type="button"
+            <Link
+              to="/contact"
               className="mt-5 inline-flex items-center gap-3 rounded-full bg-[#f8bc00] px-5 py-2.5 text-xs font-bold tracking-[0.01em] text-[#111827] transition hover:brightness-95 sm:mt-6 sm:px-6 sm:text-sm"
             >
               <span>BOOK NOW TODAY</span>
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#e5ad00] sm:h-9 sm:w-9">
                 <ArrowUpRight size={18} strokeWidth={2.6} />
               </span>
-            </button>
+            </Link>
           </div>
         </article>
       </div>
@@ -65,14 +74,17 @@ function Footer() {
 
             <div className="mt-6 flex items-center gap-3">
               {socialLinks.map((social) => {
+                const Icon = social.Icon;
                 return (
                   <a
                     key={social.id}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/90 transition hover:bg-[#f8bc00] hover:text-[#111827]"
-                    aria-label={`${social.id} link`}
+                    aria-label={`${social.label} link`}
                   >
-                    <span className="text-xs font-semibold uppercase leading-none">{social.label}</span>
+                    <Icon className="h-4 w-4" aria-hidden="true" />
                   </a>
                 );
               })}
@@ -80,24 +92,30 @@ function Footer() {
           </section>
 
           <section className="lg:border-l lg:border-r lg:border-white/15 lg:px-10">
-            <h3 className="text-3xl font-semibold leading-none">Nav Links</h3>
-            <nav className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href="/"
-                  className="text-base font-medium text-white/80 transition hover:text-[#f8bc00]"
-                >
-                  {link}
-                </a>
-              ))}
+            <h3 className="text-xl font-semibold leading-none sm:text-2xl">Quick Links</h3>
+            <nav className="mt-5 flex flex-col items-start gap-2">
+              {navLinks.map((link) =>
+                link.href === "#" ? (
+                  <span key={link.label} className="whitespace-nowrap text-sm font-medium text-white/45">
+                    {link.label}
+                  </span>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="whitespace-nowrap text-sm font-medium text-white/80 transition hover:text-[#f8bc00]"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </nav>
           </section>
 
           <section>
             {officeLocations.map((office) => (
               <div key={office.title} className="mt-6 first:mt-0">
-                <h3 className="text-3xl font-semibold leading-none">{office.title}</h3>
+                <h3 className="text-xl font-semibold leading-none sm:text-2xl">{office.title}</h3>
                 <div className="mt-4 flex items-start gap-3">
                   <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 text-[#f8bc00]">
                     <MapPin size={18} />

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
-function MobileMenu({ navItems = [] }) {
+function MobileMenu({ navItems = [], isScrolled = false }) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -25,7 +26,9 @@ function MobileMenu({ navItems = [] }) {
         className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur-sm transition-all duration-300 ${
           isOpen
             ? "border-[#f8bc00]/70 bg-[#f8bc00]/20 text-[#f8bc00] shadow-[0_0_0_4px_rgba(248,188,0,0.12)]"
-            : "border-white/40 bg-white/10 text-white hover:bg-white/20"
+            : isScrolled
+              ? "border-black/15 bg-black/[0.03] text-[#111827] hover:bg-black/[0.06]"
+              : "border-white/40 bg-white/10 text-white hover:bg-white/20"
         }`}
       >
         <span className={`relative h-4 w-5 transition-all duration-300 ${isOpen ? "scale-75 opacity-0" : "scale-100 opacity-100"}`}>
@@ -64,24 +67,24 @@ function MobileMenu({ navItems = [] }) {
         <div className="flex h-full flex-col items-center justify-center px-6">
           <nav className="flex flex-col items-center gap-5">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.href}
                 onClick={() => setIsOpen(false)}
                 className="text-[30px] font-medium leading-none tracking-tight text-white/95 transition hover:text-[#f8bc00] sm:text-[34px]"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             onClick={() => setIsOpen(false)}
             className="mt-12 inline-flex items-center gap-2 rounded-full bg-[#f8bc00] px-8 py-3 text-base font-semibold text-[#111827] transition hover:brightness-95"
           >
             Contact <ArrowRight size={17} strokeWidth={2.5} />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

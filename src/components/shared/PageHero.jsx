@@ -5,11 +5,13 @@ import breadcrumbImage from "../../assets/images/breadcrumb.jpg";
 function PageHero({
   title = "Page Title",
   breadcrumbItems = [{ label: "Home", href: "/" }, { label: "Page" }],
+  backgroundImage = breadcrumbImage,
+  centeredLinks = [],
 }) {
   return (
     <section className="relative overflow-hidden">
       <img
-        src={breadcrumbImage}
+        src={backgroundImage}
         alt="Construction site background"
         className="h-[420px] w-full object-cover sm:h-[460px]"
       />
@@ -54,6 +56,23 @@ function PageHero({
               })}
             </ol>
           </nav>
+
+          {centeredLinks.length > 0 && (
+            <nav aria-label="Project categories" className="mt-7">
+              <ul className="flex flex-wrap items-center justify-center gap-3">
+                {centeredLinks.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href || "#"}
+                      className="inline-flex rounded-full border border-white/35 bg-white/10 px-5 py-2 text-sm font-medium text-white transition hover:border-[#f8bc00] hover:bg-[#f8bc00]/20"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
         </div>
       </div>
     </section>

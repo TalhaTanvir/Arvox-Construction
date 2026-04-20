@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 import hero1 from "../../../assets/images/hero/hero1.jpg";
 import hero2 from "../../../assets/images/hero/hero2.jpg";
 import hero3 from "../../../assets/images/hero/hero3.jpg";
@@ -46,13 +47,13 @@ function FeaturedProjects() {
             </h2>
           </div>
 
-          <button
-            type="button"
+          <Link
+            to="/projects"
             className="inline-flex w-fit items-center gap-2 rounded-full border border-[#0f1720]/15 bg-white px-5 py-2.5 text-sm font-semibold text-[#0f1720] transition hover:border-[#f8bc00]/70 hover:text-[#0f1720]"
           >
             View All Projects
             <ArrowUpRight size={16} strokeWidth={2.4} />
-          </button>
+          </Link>
         </div>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2">

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import hero1 from "../../../assets/images/hero/hero1.jpg";
 import hero2 from "../../../assets/images/hero/hero2.jpg";
 import hero3 from "../../../assets/images/hero/hero3.jpg";
@@ -10,30 +11,30 @@ const heroSlides = [
   {
     id: 1,
     image: hero1,
-    title: "Building Better Spaces",
+    title: "Future-Ready Construction Starts Here",
     description:
-      "Trusted construction services with solid execution, modern methods, and long-term durability.",
+      "We combine bold design, smart engineering, and reliable delivery to build spaces that perform beautifully for years.",
   },
   {
     id: 2,
     image: hero2,
-    title: "Precision From Ground Up",
+    title: "From Concept To Completion, Seamlessly",
     description:
-      "From planning to completion, every phase is delivered with accuracy and complete transparency.",
+      "Our team manages every phase with clarity, speed, and precision so your project moves forward with confidence.",
   },
   {
     id: 3,
     image: hero3,
-    title: "Built For Lasting Value",
+    title: "Modern Craftsmanship. Measurable Results.",
     description:
-      "We deliver high-quality residential and commercial projects tailored to your goals.",
+      "Residential and commercial projects delivered with quality-first standards, modern methods, and transparent communication.",
   },
   {
     id: 4,
     image: hero4,
-    title: "Your Vision, Engineered",
+    title: "Build Smarter With A Trusted Partner",
     description:
-      "A dependable team focused on timelines, quality standards, and smooth project delivery.",
+      "Turn your vision into a high-impact, durable space with a construction partner committed to timelines and excellence.",
   },
 ];
 
@@ -80,16 +81,19 @@ function Hero() {
               <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10" />
 
               <div className="absolute inset-0 flex items-end p-6 pb-24 sm:p-10 sm:pb-24 md:p-14 md:pb-28">
-                <div className="max-w-[620px] text-white">
-                  <p className="mb-3 text-sm font-semibold tracking-[0.2em] text-[#f8bc00]">
-                    0{slide.id}
-                  </p>
+                <div className="ml-14 max-w-[620px] text-white sm:ml-16 md:ml-20">
                   <h1 className="text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
                     {slide.title}
                   </h1>
                   <p className="mt-4 max-w-[540px] text-sm leading-relaxed text-white/85 sm:text-base">
                     {slide.description}
                   </p>
+                  <Link
+                    to="/contact"
+                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f8bc00] px-7 py-3 text-[15px] font-semibold text-[#111827] transition hover:brightness-95"
+                  >
+                    Start Today <ArrowRight size={16} strokeWidth={2.4} />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -99,7 +103,7 @@ function Hero() {
         <button
           type="button"
           onClick={scrollPrev}
-          className="absolute left-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/45 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 sm:left-6 sm:h-12 sm:w-12"
+          className="absolute bottom-20 left-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/45 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 sm:bottom-24 sm:left-6 sm:h-12 sm:w-12 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
           aria-label="Previous slide"
         >
           <ChevronLeft size={20} />
@@ -108,7 +112,7 @@ function Hero() {
         <button
           type="button"
           onClick={scrollNext}
-          className="absolute right-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/45 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 sm:right-6 sm:h-12 sm:w-12"
+          className="absolute bottom-20 right-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/45 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 sm:bottom-24 sm:right-6 sm:h-12 sm:w-12 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
           aria-label="Next slide"
         >
           <ChevronRight size={20} />
